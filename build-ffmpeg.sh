@@ -8,6 +8,8 @@ SCRATCH="scratch"
 # must be an absolute path
 THIN=`pwd`/"thin"
 
+NUMCORES=`sysctl -n hw.logicalcpu`
+
 # absolute path to x264 library
 #X264=`pwd`/fat-x264
 
@@ -128,7 +130,7 @@ then
 		    --prefix="$THIN/$ARCH" \
 		|| exit 1
 
-		make -j3 install $EXPORT || exit 1
+		make -j$NUMCORES install $EXPORT || exit 1
 		cd $CWD
 	done
 fi
